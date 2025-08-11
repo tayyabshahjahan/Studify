@@ -1,0 +1,142 @@
+<% pageTitle = `${card.title} | Quiz` %> <% layout('./layouts/boilerPlate') %>
+<% customStyles = "/css/dashboard/showQuizzes.css" %>
+
+<div class="container py-5">
+  <% if (level == 'easy') { %>
+  <h3 class="text-primary mb-4">Easy Questions</h3>
+  <form
+    class="needs-validation"
+    novalidate
+    action="/user/<%= currentUser._id %>/card/<%= card._id %>/quiz?level=easy"
+    method="post"
+  >
+    <% for (let i = 0; i < card.quiz.easyQuiz.length; i++) { let easyQ =
+    card.quiz.easyQuiz[i]; %>
+
+    <div class="card quiz-card">
+      <div class="card-body">
+        <h5 class="card-title">Q: <%= easyQ.question %></h5>
+        <% for (let j = 0; j < easyQ.choices.length; j++) { %>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="easy-<%= i %>"
+          id="easy-<%= i %>-<%= j %>" value="<%= String.fromCharCode(65 + j) %>"
+          <%= j === 0 ? 'required' : '' %> />
+          <label class="form-check-label" for="easy-<%= i %>-<%= j %>">
+            <%= easyQ.choices[j] %>
+          </label>
+        </div>
+        <% } %> <% if (answers) { %> <% if (answers[i] === 1) { %>
+        <div class="alert alert-success mt-3">
+          Correct Answer: <strong><%= easyQ.answer %></strong>
+        </div>
+        <% } else { %>
+        <div class="alert alert-danger mt-3">
+          Correct Answer: <strong><%= easyQ.answer %></strong>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </div>
+    <% } %> <% if (!answers) { %>
+    <button class="btn btn-primary fixed-submit">Submit</button>
+    <% } else { %>
+    <a
+      href="/user/<%= currentUser._id %>/card/<%= card._id %>"
+      class="btn btn-outline-secondary mt-4"
+    >
+      <i class="bi bi-arrow-left me-2"></i>Back to Card
+    </a>
+    <% } %>
+  </form>
+  <% } %> <% if (level == 'medium') { %>
+  <h3 class="text-warning mb-4">Medium Questions</h3>
+  <form
+    class="needs-validation"
+    novalidate
+    action="/user/<%= currentUser._id %>/card/<%= card._id %>/quiz?level=medium"
+    method="post"
+  >
+    <% for (let i = 0; i < card.quiz.mediumQuiz.length; i++) { let mediumQ =
+    card.quiz.mediumQuiz[i]; %>
+
+    <div class="card quiz-card">
+      <div class="card-body">
+        <h5 class="card-title">Q: <%= mediumQ.question %></h5>
+        <% for (let j = 0; j < mediumQ.choices.length; j++) { %>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="medium-<%= i %>"
+          id="medium-<%= i %>-<%= j %>" value="<%= String.fromCharCode(65 + j)
+          %>" <%= j === 0 ? 'required' : '' %> />
+          <label class="form-check-label" for="medium-<%= i %>-<%= j %>">
+            <%= mediumQ.choices[j] %>
+          </label>
+        </div>
+        <% } %> <% if (answers) { %> <% if (answers[i] === 1) { %>
+        <div class="alert alert-success mt-3">
+          Correct Answer: <strong><%= mediumQ.answer %></strong>
+        </div>
+        <% } else { %>
+        <div class="alert alert-danger mt-3">
+          Correct Answer: <strong><%= mediumQ.answer %></strong>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </div>
+    <% } %> <% if (!answers) { %>
+    <button class="btn btn-primary fixed-submit">Submit</button>
+    <% } else { %>
+    <a
+      href="/user/<%= currentUser._id %>/card/<%= card._id %>"
+      class="btn btn-outline-secondary mt-4"
+    >
+      <i class="bi bi-arrow-left me-2"></i>Back to Card
+    </a>
+    <% } %>
+  </form>
+  <% } %> <% if (level == 'hard') { %>
+  <h3 class="text-danger mb-4">Hard Questions</h3>
+  <form
+    class="needs-validation"
+    novalidate
+    action="/user/<%= currentUser._id %>/card/<%= card._id %>/quiz?level=hard"
+    method="post"
+  >
+    <% for (let i = 0; i < card.quiz.hardQuiz.length; i++) { let hardQ =
+    card.quiz.hardQuiz[i]; %>
+
+    <div class="card quiz-card">
+      <div class="card-body">
+        <h5 class="card-title">Q: <%= hardQ.question %></h5>
+        <% for (let j = 0; j < hardQ.choices.length; j++) { %>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="hard-<%= i %>"
+          id="hard-<%= i %>-<%= j %>" value="<%= String.fromCharCode(65 + j) %>"
+          <%= j === 0 ? 'required' : '' %> />
+          <label class="form-check-label" for="hard-<%= i %>-<%= j %>">
+            <%= hardQ.choices[j] %>
+          </label>
+        </div>
+        <% } %> <% if (answers) { %> <% if (answers[i] === 1) { %>
+        <div class="alert alert-success mt-3">
+          Correct Answer: <strong><%= hardQ.answer %></strong>
+        </div>
+        <% } else { %>
+        <div class="alert alert-danger mt-3">
+          Correct Answer: <strong><%= hardQ.answer %></strong>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </div>
+    <% } %> <% if (!answers) { %>
+    <button class="btn btn-primary fixed-submit">Submit</button>
+    <% } else { %>
+    <a
+      href="/user/<%= currentUser._id %>/card/<%= card._id %>"
+      class="btn btn-outline-secondary mt-4"
+    >
+      <i class="bi bi-arrow-left me-2"></i>Back to Card
+    </a>
+    <% } %>
+  </form>
+  <% } %>
+</div>
+<script src="/javaScript/showQuizzes.js"></script>

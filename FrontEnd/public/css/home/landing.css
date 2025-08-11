@@ -1,0 +1,30 @@
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f1f5f9;
+  font-family: "Inter", sans-serif;
+}
+
+.hero h1 {
+  color: #38bdf8;
+}
+
+.hero .btn-outline-light {
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+.hero .btn-outline-light:hover {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+
+.hero .btn-primary {
+  background-color: #38bdf8;
+  border: none;
+  color: #0f172a;
+}
+
+.hero .btn-primary:hover {
+  background-color: #0ea5e9;
+}

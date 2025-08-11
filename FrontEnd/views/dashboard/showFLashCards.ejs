@@ -1,0 +1,41 @@
+<% pageTitle = `${card.title} | Flash Card` %> <%
+layout('./layouts/boilerPlate') %> <% customStyles =
+"/css/dashboard/showFlashCard.css" %>
+
+<div class="container py-5">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-primary">Flashcards</h2>
+    <p class="text-muted">Click on a card to flip and test your memory!</p>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <% for(let i=0;i<5;i++) { %>
+    <div class="col-md-4 d-flex justify-content-center">
+      <div class="flashcard">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="icon"><i class="bi bi-lightbulb-fill"></i></div>
+            <div><%= card.flashCards.front[i] %></div>
+          </div>
+          <div class="flashcard-back">
+            <span class="badge bg-warning text-dark mb-3">
+              <i class="bi bi-lightning-charge-fill me-1"></i>Answer
+            </span>
+            <div><%= card.flashCards.back[i] %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <div class="text-center mt-5">
+      <a
+        href="/user/<%= currentUser._id %>/card/<%= card._id %>"
+        class="btn btn-outline-secondary px-4 py-2 fw-semibold"
+      >
+        <i class="bi bi-arrow-left me-2"></i>Back to Card
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="/javaScript/showFlashCard.js"></script>

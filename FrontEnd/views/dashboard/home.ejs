@@ -1,0 +1,113 @@
+<% pageTitle = "Home " %> <% layout('./layouts/boilerPlate') %> <% customStyles
+= "/css/dashboard.css" %>
+
+<style>
+  .card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.2s ease;
+  }
+
+  .delete-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+  .delete-btn:hover {
+    color: #a71d2a;
+  }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+  <form
+    action="/user/<%= user._id %>?card"
+    method="GET"
+    class="d-flex align-items-center gap-3"
+  >
+    <label for="category" class="fw-semibold mb-0">Filter Cards:</label>
+    <select name="card" id="category" class="form-select w-auto">
+      <option value="">Select Card category</option>
+      <option value="completed">Completed</option>
+      <option value="notCompleted">Not Completed</option>
+    </select>
+  </form>
+
+  <a
+    href="/user/<%= user._id %>/card/new"
+    class="btn btn-success fw-bold shadow px-4 py-2 d-flex align-items-center gap-2 fs-5"
+  >
+    <i class="bi bi-file-earmark-plus fs-4"></i> New Card
+  </a>
+</div>
+
+<script>
+  const select = document.getElementById("category");
+  select.addEventListener("change", () => {
+    if (select.value) {
+      select.form.submit();
+    }
+  });
+</script>
+
+<h2 class="mb-4 fw-bold">Welcome, <%= user.username %>!</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <% for (let doc of allDocs) { const isCompleted = doc.quizzesCompleted === 3;
+  %>
+  <div class="col">
+    <div
+      class="card h-100 border-success rounded-4 shadow-lg position-relative"
+      style="background: linear-gradient(135deg, #f0fff0, #ffffff)"
+    >
+      <form
+        action="/user/<%= user._id %>/card/<%= doc._id %>?_method=DELETE"
+        method="POST"
+        class="delete-form"
+      >
+        <button
+          type="submit"
+          class="delete-btn"
+          title="Delete Card"
+          data-title="<%= doc.title %>"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+      </form>
+
+      <div class="card-body d-flex flex-column align-items-center">
+        <i class="bi bi-journal-code fs-1 text-success"></i>
+
+        <h5 class="card-title mt-3 fw-semibold text-center">
+          <%= doc.title %>
+        </h5>
+
+        <p class="mt-2 text-muted small">
+          <span class="badge bg-secondary"><%= doc.courseName %></span>
+        </p>
+
+        <span
+          class="badge <%= isCompleted ? 'bg-success' : 'bg-danger' %> px-3 py-2 mb-3"
+        >
+          <i
+            class="bi <%= isCompleted ? 'bi-check-circle' : 'bi-x-circle' %> me-1"
+          ></i>
+          <%= isCompleted ? 'Completed' : 'Uncompleted' %>
+        </span>
+
+        <a
+          href="/user/<%= user._id %>/card/<%= doc._id %>"
+          class="btn btn-warning mt-auto w-100 fw-bold shadow-sm"
+        >
+          View Card
+        </a>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+<script src="/javaScript/home.js"></script>

@@ -1,0 +1,66 @@
+body {
+  background: #f5f7fa;
+  font-family: "Inter", sans-serif;
+}
+
+.card {
+  background: linear-gradient(135deg, #f0fdf4, #ffffff);
+  border: 2px solid #d1fae5;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+}
+
+.card-body i {
+  color: #198754;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d;
+  padding: 0.4em 0.8em;
+  font-size: 0.85rem;
+  border-radius: 0.5rem;
+}
+
+.btn-warning {
+  background: rgba(255, 193, 7, 0.8);
+  backdrop-filter: blur(6px);
+  color: #212529;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-warning:hover {
+  background: rgba(255, 193, 7, 0.95);
+  transform: scale(1.02);
+  color: #212529;
+}
+
+.btn-success {
+  border-radius: 0.75rem;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.2);
+}
+
+.btn-success:hover {
+  background-color: #157347;
+}
+
+.row-cols-1 .col,
+.row-cols-md-2 .col,
+.row-cols-lg-3 .col {
+  padding-bottom: 1.5rem;
+}

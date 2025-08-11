@@ -1,0 +1,5 @@
+Work Flow:
+-------------------
+User creates an account . A dashbord opens up with alr uploaded docs which will be shown like card types and the progess 
+as well.User can create a new card type thing which they upload a doc to.Ai will be used to create a summary of the
+docs makes quizes and flashcards.The progress will be tracked .
