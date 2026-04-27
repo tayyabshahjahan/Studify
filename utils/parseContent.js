@@ -1,8 +1,9 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI(
-  "AIzaSyCRFM - CL3j - HrXhDOmWRsoAl7_mCOPJvss"
-);
+const genAI = new GoogleGenerativeAI("AIzaSyCk_IMP2UJ23DA0tynT4tkpcYYC1iKhmtU");
+
+console.log("Loaded key:", process.env.GEMINI_API_KEY); // Debug check
+
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 const getSummary = async (text) => {
