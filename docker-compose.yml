@@ -1,4 +1,13 @@
 services:
+  studify:
+    build: ./
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - mongo
+
   mongo:
     image: mongo
     restart: always

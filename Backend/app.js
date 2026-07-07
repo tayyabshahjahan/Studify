@@ -16,7 +16,7 @@ const methodOverride = require("method-override");
 const appError = require("./../utils/appError");
 
 mongoose
-  .connect("mongodb://admin:tayyab@127.0.0.1:27017/StudifyDb?authSource=admin")
+  .connect("mongodb://admin:tayyab@mongo:27017/StudifyDb?authSource=admin")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
