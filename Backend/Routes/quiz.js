@@ -22,7 +22,7 @@ router.get(
     ) {
       res.render("./quizzes/show", { card, level });
     } else {
-      throw new appError("Couldnt find what you are looking for ", 404);
+      throw new appError("Could not  find what you are looking for ", 404);
     }
   })
 );

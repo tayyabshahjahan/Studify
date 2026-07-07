@@ -67,6 +67,6 @@ app.use((err, req, res, next) => {
 app.use((req, res, next) => {
   res.status(404).render("./error/error", {
     status: 404,
-    message: "Page Not Found",
+    message: "Page not Found",
   });
 });
