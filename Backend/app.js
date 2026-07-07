@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -15,7 +16,7 @@ const methodOverride = require("method-override");
 const appError = require("./../utils/appError");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/StudifyDb")
+  .connect("mongodb://admin:tayyab@127.0.0.1:27017/StudifyDb?authSource=admin")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
