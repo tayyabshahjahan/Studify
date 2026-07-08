@@ -16,6 +16,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: tayyab
+    volumes:
+      - mongo-data:/data/db
 
   mongo-express:
     image: mongo-express
@@ -26,3 +28,6 @@ services:
       ME_CONFIG_MONGODB_AUTH_USERNAME: admin
       ME_CONFIG_MONGODB_AUTH_PASSWORD: tayyab
       ME_CONFIG_MONGODB_SERVER: mongo
+volumes:
+  mongo-data:
+    driver: local
