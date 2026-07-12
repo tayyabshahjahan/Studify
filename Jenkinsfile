@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools{
+        node 'nodeJS 26.5.0'
+    }
     environment{
          CREDS=credentials('GitHub')
     }
@@ -19,6 +21,7 @@ pipeline {
             }
             steps{
                 echo"running tests";
+                sh'node -- version'
             }
         }
         stage('Build'){
