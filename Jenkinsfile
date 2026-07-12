@@ -4,17 +4,24 @@ pipeline {
     environment{
          VERSION="1.20"
          SERVER="PROD"
+         CREDS=credentials('GitHub')
     }
 
     stages {
-        stage('Build') {
+        stage('Build'){
+            steps{
+                sh"....${CREDS}..."
+            }
+
+        }
+        stage('Deploy') {
             when{
-                expression{
+                expession{
                     env.SERVER=="PROD"
                 }
             }
             steps {
-                echo "built version ${VERSION} "
+                echo "Deployed version {$VERSION} "
             }
         }
     }
