@@ -1,40 +1,29 @@
 pipeline {
     agent any
-    environment{
-         CREDS=credentials('GitHub')
-    }
-    parameters{
-        choice(name:"VERSION",choices:['1.1.0','1.2.0','1.3.0'],description:"")
-        choice(name:"SERVER",choices:['dev','test','prod'],description:"")
-        booleanParam(name:"IS_TEST",defaultValue:false,description:"")
-    }
 
     stages {
-        stage('test'){
-            when{
-                expression{
-                    params.IS_TEST
-                }
-            }
-            steps{
-                echo"running tests";
+        stage('Build') {
+            steps {
+                echo 'building the app'
+                sh 'docker build -t studify-1.0.'
             }
         }
-        stage('Build'){
-            agent{
-                docker{
-                    image 'node:18'
-                }
-            }
-            steps{
-                echo"built version ${params.VERSION}"
-                sh 'node --version'
-            }
 
+        stage('Push') {
+            steps {
+                echo "pushing the app"
+                withcredentials([usernamePassword(
+                    credentials:'docker-hub',usernameVariable:'USER',passwordVariable:"PWD"
+                )])
+                sh "echo ${PWD} | docker login -u  ${USER} --password-stdin" 
+                sh 'docker push studify-1.0'
+                echo "pushed img"
+            }
         }
+
         stage('Deploy') {
             steps {
-                echo "Deployed to ${params.SERVER}} "
+                echo 'Deploy step'
             }
         }
     }
