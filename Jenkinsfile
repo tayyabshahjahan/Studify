@@ -9,19 +9,19 @@ pipeline {
             }
         }
 
-        tage('Push') {
-    steps {
-        echo "pushing the app"
-        withCredentials([usernamePassword(
-            credentialsId: 'docker-hub',
-            usernameVariable: 'USER',
-            passwordVariable: 'PWD'
-        )]) {
-            sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
-            sh 'docker push studify-1.0'
-            echo "pushed img"
+         stage('Push') {
+                steps {
+                echo "pushing the app"
+                withCredentials([usernamePassword(
+                    credentialsId: 'docker-hub',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PWD'
+                )]) {
+                    sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
+                    sh 'docker push studify-1.0'
+                    echo "pushed img"
+                }
         }
-    }
 }
 
         stage('Deploy') {
