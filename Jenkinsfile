@@ -35,7 +35,9 @@ pipeline {
         stage('Build'){
             steps{
                 echo"built version ${params.VERSION}"
+                script{
                 scr.build()
+                }
             }
 
         }
