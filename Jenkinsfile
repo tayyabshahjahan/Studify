@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building the app'
-                sh 'docker build -t studify-1.0.'
+                sh 'docker build -t studify-1.0 .'
             }
         }
 
