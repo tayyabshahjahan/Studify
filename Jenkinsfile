@@ -1,9 +1,5 @@
-def scr
 pipeline {
     agent any
-    tools{
-        nodejs 'Nodejs 26.5'
-    }
     environment{
          CREDS=credentials('GitHub')
     }
@@ -14,13 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('init'){
-            steps{
-            script{
-                scr = load "script.groovy"
-            }
-        }
-        }
         stage('test'){
             when{
                 expression{
@@ -29,15 +18,17 @@ pipeline {
             }
             steps{
                 echo"running tests";
-                
             }
         }
         stage('Build'){
+            agent{
+                docker{
+                    image:'node:18'
+                }
+            }
             steps{
                 echo"built version ${params.VERSION}"
-                script{
-                scr.build()
-                }
+                sh 'node --version'
             }
 
         }
