@@ -15,9 +15,11 @@ pipeline {
 
     stages {
         stage('init'){
+            steps{
             script{
                 scr = load "script.groovy"
             }
+        }
         }
         stage('test'){
             when{
