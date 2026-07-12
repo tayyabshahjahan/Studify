@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building the app'
-                sh 'docker build -t studify-1.0 .'
+                sh 'docker build -t tayyabshahjehan/studify-1.0 .'
             }
         }
 
@@ -18,7 +18,7 @@ pipeline {
                     passwordVariable: 'PWD'
                 )]) {
                     sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
-                    sh 'docker push studify-1.0'
+                    sh 'docker push tayyabshahjehan/studify-1.0'
                     echo "pushed img"
                 }
         }
