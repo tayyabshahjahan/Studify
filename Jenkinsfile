@@ -21,7 +21,7 @@ pipeline {
             }
             steps{
                 echo"running tests";
-                sh'node -- version'
+                sh'node --version'
             }
         }
         stage('Build'){
