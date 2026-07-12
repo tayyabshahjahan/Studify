@@ -1,3 +1,4 @@
+def scr
 pipeline {
     agent any
     tools{
@@ -13,6 +14,11 @@ pipeline {
     }
 
     stages {
+        stage('init'){
+            script{
+                scr = load "script.groovy"
+            }
+        }
         stage('test'){
             when{
                 expression{
@@ -21,12 +27,13 @@ pipeline {
             }
             steps{
                 echo"running tests";
-                sh'node --version'
+                
             }
         }
         stage('Build'){
             steps{
                 echo"built version ${params.VERSION}"
+                scr.build()
             }
 
         }
