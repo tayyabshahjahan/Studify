@@ -16,12 +16,12 @@ pipeline {
         }
         stage('Deploy') {
             when{
-                expession{
+                expression{
                     env.SERVER=="PROD"
                 }
             }
             steps {
-                echo "Deployed version {$VERSION} "
+                echo "Deployed version ${VERSION} "
             }
         }
     }
