@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools{
-        node 'nodeJS 26.5.0'
+        nodejs 'nodejs 26.5.0'
     }
     environment{
          CREDS=credentials('GitHub')
