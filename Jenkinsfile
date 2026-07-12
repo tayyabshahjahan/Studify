@@ -2,26 +2,34 @@ pipeline {
     agent any
 
     environment{
-         VERSION="1.20"
-         SERVER="PROD"
          CREDS=credentials('GitHub')
+    }
+    parameters{
+        choice(name:"VERSION",choices:['1.1.0','1.2.0','1.3.0'],description:"")
+        choice(name:"SERVER",choices:['dev','test','prod'],description:"")
+        booleanParam(name:"IS_TEST",defaultValue:false,description:"")
     }
 
     stages {
+        stage('test'){
+            when{
+                expression{
+                    params.IS_TEST
+                }
+            }
+            steps{
+                echo"running tests";
+            }
+        }
         stage('Build'){
             steps{
-                sh"....${CREDS}..."
+                echo"built version ${params.VERSION}"
             }
 
         }
         stage('Deploy') {
-            when{
-                expression{
-                    env.SERVER=="PROD"
-                }
-            }
             steps {
-                echo "Deployed version ${VERSION} "
+                echo "Deployed to ${params.SERVER}} "
             }
         }
     }
