@@ -1,4 +1,6 @@
 {
+  "name": "Studify",
+  "version": "1.1.0",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "connect-flash": "^0.1.1",
