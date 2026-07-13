@@ -22,7 +22,7 @@ pipeline {
                 sh "git remote set-url origin https://${USER}:${PASS}@github.com/tayyabshahjahan/Studify.git"
                 sh 'git add package.json'
                 sh 'git commit -m "bump version"'
-                sh "git push origin ${env.BRANCH_NAME}"
+                sh "git push origin HEAD:${env.BRANCH_NAME}"
             }
         }
     }
