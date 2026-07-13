@@ -16,6 +16,9 @@ pipeline {
                 usernameVariable: 'USER',
                 passwordVariable: 'PASS'
             )]) {
+                sh "git config --global user.email "jenkins@example.com""
+                sh "git config --global user.name "Jenkins""
+
                 sh "git remote set-url origin https://${USER}:${PASS}@github.com/tayyabshahjahan/Studify.git"
                 sh 'git add package.json'
                 sh 'git commit -m "bump version"'
