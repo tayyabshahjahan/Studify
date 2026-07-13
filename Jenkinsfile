@@ -11,12 +11,22 @@ pipeline {
         script {
             def newVersion = incrementVersion(params.VERSION_TYPE)
             env.IMAGE_TAG = "tayyabshahjehan/studify:${newVersion}"
+            withCredentials([usernamePassword(
+                credentialsId: 'GitHub',
+                usernameVariable: 'USER',
+                passwordVariable: 'PASS'
+            )]) {
+                sh "git remote set-url origin https://${USER}:${PASS}@github.com/tayyabshahjahan/Studify.git"
+                sh 'git add package.json'
+                sh 'git commit -m "bump version"'
+                sh 'git push'
+            }
         }
     }
 }
         stage('Test') {
             steps {
-                echo "testinging: ${IMAGE_TAG}"
+                echo "testing: ${env.IMAGE_TAG}"
             }
         }
         stage('Build') {
@@ -36,7 +46,7 @@ pipeline {
                 }
             }
             steps {
-                push("${IMAGE_TAG}", 'docker-hub')
+                push("${env.IMAGE_TAG}", 'docker-hub')
             }
         }
         stage('Deploy') {
