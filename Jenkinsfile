@@ -59,7 +59,7 @@ pipeline {
                 }
             }
             steps {
-                deploy('ec2-user@52.66.202.10','Studify',${IMAGE_TAG})
+                deploy('ec2-user@52.66.202.10','Studify',"${IMAGE_TAG}")
             }
         }
     }
