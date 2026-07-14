@@ -35,7 +35,7 @@ pipeline {
         stage('Build') {
             when {
                 expression {
-                    env.BRANCH_NAME == "main"
+                    env.BRANCH_NAME == "Jenkins-test"
                 }
             }
             steps {
@@ -45,7 +45,7 @@ pipeline {
         stage('Push') {
             when {
                 expression {
-                    env.BRANCH_NAME == "main"
+                    env.BRANCH_NAME == "Jenkins-test"
                 }
             }
             steps {
@@ -53,8 +53,13 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression{
+                    env.BRANCH_NAME == "Jenkins-test"
+                }
+            }
             steps {
-                echo 'Deploy step'
+                deploy('ec2-user@52.66.202.10','Studify',${IMAGE_TAG})
             }
         }
     }
