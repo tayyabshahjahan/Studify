@@ -18,7 +18,7 @@ spec:
         - name: ecr-secret
       containers:
         - name: {{ .Release.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: {{ .Values.imageName }}
           ports:
             - containerPort: {{ .Values.containerPort }}
           livenessProbe:
