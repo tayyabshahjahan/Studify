@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 image:
   repository: 099771438326.dkr.ecr.ap-south-1.amazonaws.com/studify
 containerPort: 3000
