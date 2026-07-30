@@ -44,7 +44,7 @@ spec:
           env:
           {{- range .Values.envVars }}
             - name: {{ .key }}
-              value: {{ .value | quote} }
+              value: {{ .value | quote}}
           {{- end }}
             - name: MONGO_URL
               valueFrom:
