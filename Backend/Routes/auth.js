@@ -38,10 +38,11 @@ router.post(
         res.redirect("/login");
       }
     } catch (e) {
+      console.log("Signup error:", e);
       req.flash("error", e.message);
       res.redirect("/signup");
     }
-  })
+  }),
 );
 
 router.get("/login", (req, res) => {
@@ -58,7 +59,7 @@ router.post(
     req.flash("success", "Successefly Logged In");
     const id = req.user._id;
     res.redirect(`/user/${id}`);
-  }
+  },
 );
 
 router.get("/logout", (req, res) => {
