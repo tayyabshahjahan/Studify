@@ -1,6 +1,10 @@
 @Library('Jenkins-Shared-Library@master') _
 pipeline {
     agent any
+    environment {
+        MONGO_URL = credentials('MONGO_URL')
+        GEMINI_API_KEY = credentials('GEMINI_API_KEY')
+    }
     parameters {
     choice(name: 'VERSION_TYPE', choices: ['patch', 'minor', 'major'], description: 'Version bump type')
             }
@@ -10,7 +14,7 @@ pipeline {
     steps {
         script {
             def newVersion = incrementVersion(params.VERSION_TYPE)
-            env.IMAGE_TAG = "tayyabshahjehan/studify:${newVersion}"
+            env.IMAGE_TAG = "099771438326.dkr.ecr.ap-south-1.amazonaws.com/studify:${newVersion}"
             withCredentials([usernamePassword(
                 credentialsId: 'GitHub',
                 usernameVariable: 'USER',
@@ -49,7 +53,7 @@ pipeline {
                 }
             }
             steps {
-                push("${env.IMAGE_TAG}", 'docker-hub')
+                push("${env.IMAGE_TAG}", '099771438326.dkr.ecr.ap-south-1.amazonaws.com')
             }
         }
         stage('Deploy') {
@@ -59,7 +63,7 @@ pipeline {
                 }
             }
             steps {
-                deploy('ec2-user@52.66.202.10','Studify',"${IMAGE_TAG}")
+                deploy("${MONGO_URL}","${GEMINI_API_KEY}",'studify',"${env.IMAGE_TAG}",'studifyCharts','099771438326.dkr.ecr.ap-south-1.amazonaws.com')
             }
         }
     }

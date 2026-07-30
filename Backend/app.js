@@ -16,7 +16,7 @@ const methodOverride = require("method-override");
 const appError = require("./../utils/appError");
 
 mongoose
-  .connect("mongodb://admin:tayyab@mongo:27017/StudifyDb?authSource=admin")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
@@ -24,7 +24,7 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "..", "FrontEnd", "views"));
 
-app.use(express.static(path.join('/home/app', 'FrontEnd', 'public')));
+app.use(express.static(path.join("/home/app", "FrontEnd", "public")));
 
 app.use(methodOverride("_method"));
 
