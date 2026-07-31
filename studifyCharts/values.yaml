@@ -1,0 +1,16 @@
+replicaCount: 1
+image:
+  repository: 099771438326.dkr.ecr.ap-south-1.amazonaws.com/studify
+containerPort: 3000
+service:
+  type: ClusterIP
+  port: 3000
+ingress:
+  host: k8s-ingressn-ingressn-0f42da3bc4-7ca7ed50e98700fb.elb.ap-south-1.amazonaws.com
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
