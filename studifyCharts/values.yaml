@@ -6,7 +6,7 @@ service:
   type: ClusterIP
   port: 3000
 ingress:
-  host: k8s-ingressn-ingressn-0f42da3bc4-7ca7ed50e98700fb.elb.ap-south-1.amazonaws.com
+  host: k8s-ingressn-ingressn-454b259e8c-f03adc75e75113e1.elb.ap-south-1.amazonaws.com
 resources:
   requests:
     cpu: 200m
